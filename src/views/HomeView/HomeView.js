@@ -20,6 +20,11 @@ export class HomeView extends React.Component {
     increment: PropTypes.func.isRequired
   };
 
+  cool () {
+    const schnucksi = new Schnucksi()
+    return 'This is so cool ' + schnucksi.message
+  }
+
   render () {
     return (
       <div className='container text-center'>
@@ -30,7 +35,8 @@ export class HomeView extends React.Component {
                  alt='This is a duck, because Redux.' />
           </div>
         </div>
-        <h1>Welcome to the React Redux Starter Kit</h1>
+        <h1>Welcome to the React Redux Starter Kit!</h1>
+        <h5>{this.cool()}</h5>
         <h2>
           Sample Counter:
           {' '}
@@ -45,10 +51,25 @@ export class HomeView extends React.Component {
                 onClick={this.props.doubleAsync}>
           Double (Async)
         </button>
+        <button className='btn btn-default'
+                onClick={this.jump}>
+          Jump
+        </button>
         <hr />
         <Link to='/404'>Go to 404 Page</Link>
       </div>
     )
+  }
+
+  jump () {
+    const schnucksi = new Schnucksi()
+    console.log('JUMP!!!' + schnucksi.message)
+  }
+}
+
+class Schnucksi {
+  get message () {
+    return 'hey ho properties'
   }
 }
 
