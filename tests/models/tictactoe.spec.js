@@ -39,6 +39,18 @@ class TicTacToe {
     return false
   }
 
+  getTie () {
+    return this.getStoneCount() === 9 && !this.getWinningCombination()
+  }
+
+  getGameOver () {
+    return this.getTie() || this.getWinningCombination()
+  }
+
+  getStoneCount () {
+    return this.fields.reduce(function (sum, v) { return v !== '' ? sum + 1 : sum }, 0)
+  }
+
   isWinningCombination (combination) {
     return this.fields[combination[0]] !== '' &&
       this.fields[combination[0]] === this.fields[combination[1]] &&
@@ -77,6 +89,49 @@ describe('(Model) TicTacToe', function () {
       t.setStone(4, 'x')
       t.setStone(5, 'x')
       assert.equal(t.getWinningCombination(), 1)
+    })
+  })
+
+  describe('getTie()', function () {
+    it('should return whether we have a tie', function () {
+      const t = new TicTacToe()
+      t.setStone(0, 'x')
+      t.setStone(1, 'x')
+      t.setStone(2, 'o')
+      t.setStone(3, 'o')
+      t.setStone(4, 'o')
+      t.setStone(5, 'x')
+      t.setStone(6, 'x')
+      t.setStone(7, 'x')
+      t.setStone(8, 'o')
+      assert.equal(t.getStoneCount(), 9)
+      assert.equal(t.getTie(), true)
+    })
+  })
+
+  describe('getGameOver()', function () {
+    it('should return whether the game ended', function () {
+      const t = new TicTacToe()
+      assert.equal(t.getGameOver(), false)
+      t.setStone(0, 'x')
+      t.setStone(1, 'x')
+      t.setStone(2, 'o')
+      t.setStone(3, 'o')
+      t.setStone(4, 'o')
+      t.setStone(5, 'x')
+      t.setStone(6, 'x')
+      t.setStone(7, 'x')
+      t.setStone(8, 'o')
+      assert.equal(t.getGameOver(), true)
+    })
+  })
+
+  describe('arrow functions', () => {
+    it('give us better syntax', () => {
+      const input = [1, 2, 3]
+      let expected = [1, 4, 9]
+      let actual = input.map((v, t) => { console.log(t); return v * v })
+      assert.deepEqual(actual, expected)
     })
   })
 })
