@@ -10,20 +10,20 @@ const WINNING_COMBINATIONS = [
 ]
 
 class TicTacToe {
-  constructor (objectToClone) {
-    if (objectToClone) {
-      this.fields = objectToClone.fields.slice()
-    } else {
-      this.fields = ['', '', '', '', '', '', '', '']
-    }
+  constructor () {
+    this.fields = ['', '', '', '', '', '', '', '']
   }
 
   getStone (position) {
     return this.fields[position]
   }
 
+  // Returns a new TicTicToe with the given position set to the given stone.
   setStone (position, stone) {
-    this.fields[position] = stone
+    const t = new TicTacToe()
+    t.fields = this.fields.slice()
+    t.fields[position] = stone
+    return t
   }
 
   getWinningCombination () {
@@ -31,9 +31,12 @@ class TicTacToe {
     for (let i = 0; i < WINNING_COMBINATIONS.length; i++) {
       const combination = WINNING_COMBINATIONS[i]
       if (that.isWinningCombination(combination)) {
+        // id of winning combination
         return i
       }
     }
+
+    // Nope, none found.
     return false
   }
 
