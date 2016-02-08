@@ -15,6 +15,8 @@ class TodoFilter extends React.Component {
     return (
       <div className='todo-filter'>
 
+      <label>3 items left</label>
+
       <label className='control-label input-group'>Filter</label>
       <div className='btn-group' data-toggle='buttons'>
         {

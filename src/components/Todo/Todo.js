@@ -11,7 +11,7 @@ class Todo extends React.Component {
     return (
       <tr>
         <td>
-          <input type='checkbox' value={this.props.todo.completed} onChange={() => { this.props.onCompleted(this.props.todo) } } />
+          <input type='checkbox' checked={this.props.todo.completed ? 'checked' : ''} onChange={() => { this.props.onCompleted(this.props.todo) } } />
         </td>
         <td>
           <span style={textStyle}>
