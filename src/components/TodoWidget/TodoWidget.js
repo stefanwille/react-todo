@@ -10,14 +10,33 @@ export class TodoWidget extends React.Component {
   };
 
   render () {
-    console.log('supplying todoFilter', this.props.store.getState().todoFilter)
     return (
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
-          <TodoList todos={this.props.store.getState().todos} onTodoCompleted={this.handleTodoCompleted.bind(this)} />
+          <TodoList todos={this.getFilteredTodos()} onTodoCompleted={this.handleTodoCompleted.bind(this)} />
           <TodoFilter todos={this.props.store.getState().todos} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
     )
+  }
+
+  getFilteredTodos () {
+    const todos = this.props.store.getState().todos
+    const todoFilter = this.props.store.getState().todoFilter
+    let predicate
+    switch (todoFilter) {
+      case 'ALL':
+        predicate = (v) => v
+        break
+      case 'ACTIVE':
+        predicate = (v) => !v.completed
+        break
+      case 'COMPLETED':
+        predicate = (v) => v.completed
+        break
+      default:
+        throw new Error('Unknown todoFilter' + todoFilter)
+    }
+    return todos.filter(predicate)
   }
 
   handleAddTodo (text) {

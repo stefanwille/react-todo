@@ -9,14 +9,14 @@ class TodoList extends React.Component {
   };
 
   render () {
-    const todos = this.props.todos.map(todo => (
+    const todosComponents = this.props.todos.map(todo => (
                                 <Todo todo={todo} onCompleted={this.props.onTodoCompleted} key={todo.id} />
                             )
     )
     return (
       <table className='todo-list todo-table'>
         <tbody>
-          { todos }
+          { todosComponents }
         </tbody>
       </table>
     )
