@@ -1,5 +1,4 @@
 
-
 .todo-widget {
   margin-top: 50px;
 }
@@ -18,4 +17,12 @@
 
 .todo-form input {
   min-width: 250px;
+}
+
+.todo-filter {
+  margin-top: 40px;
+}
+
+.todo-filter .selected {
+
 }

@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 export const INITIAL_STATE = {
   todos: [],
-  inputText: ''
+  todoFilter: 'ALL'
 }
 
 export const todoReducer = (state = INITIAL_STATE, action) => {
@@ -24,8 +24,8 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
       const updatedTodos = state.todos.map(todo => (todo.id === action.id) ? { ...todo, ...action.updates } : todo)
       return { ...state, todos: updatedTodos }
 
-    case 'UPDATE_INPUT_TEXT':
-      return { ...state, inputText: action.inputText }
+    case 'SELECT_TODO_FILTER':
+      return { ...state, todoFilter: action.todoFilter }
 
     default:
       return state

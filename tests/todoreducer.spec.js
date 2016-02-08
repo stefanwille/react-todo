@@ -46,12 +46,12 @@ describe('todos reducer', () => {
     })
   })
 
-  describe('update input text', () => {
-    it('modifies the text that will be used to add a todo', () => {
-      const action = {type: 'UPDATE_INPUT_TEXT', inputText: 'hoohoo'}
+  describe('select todo filter', () => {
+    it('selects the todo filter', () => {
+      const action = {type: 'SELECT_TODO_FILTER', todoFilter: 'COMPLETED'}
       store.dispatch(action)
-      const expectedState = 'hoohoo'
-      assert.equal(expectedState, store.getState().inputText)
+      const expectedState = 'COMPLETED'
+      assert.deepEqual(expectedState, store.getState().todoFilter)
     })
   })
 })
