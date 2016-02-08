@@ -1,0 +1,7 @@
+.todo-table td:first-child {
+  width: 20px;
+}
+
+.todo-table td:second-child {
+  width: 200px;
+}
