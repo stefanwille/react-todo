@@ -1,7 +1,8 @@
 import 'babel-polyfill'
 
 export const INITIAL_STATE = {
-  todos: []
+  todos: [],
+  inputText: ''
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -21,8 +22,10 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
     case 'UPDATE_TODO':
       const updatedTodos = state.todos.map(todo => (todo.id === action.id) ? { ...todo, ...action.updates } : todo)
-      console.log("updatedTodos", updatedTodos)
       return { ...state, todos: updatedTodos }
+
+    case 'UPDATE_INPUT_TEXT':
+      return { ...state, inputText: action.inputText }
 
     default:
       return state

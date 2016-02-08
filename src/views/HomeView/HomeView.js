@@ -33,13 +33,12 @@ export class HomeView extends React.Component {
   }
 
   handleAddTodo (text) {
-    console.log('handleAddTodo', text)
-    // this.props.store.dispatch({type: 'ADD_TODO', text: text, completed: false, id: Date.now()})
+    this.props.store.dispatch({type: 'ADD_TODO', text: text, completed: false, id: Date.now()})
   }
 
   handleTodoCompleted (todo) {
     console.log('handleCompleted', todo)
-    // this.props.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
+    this.props.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
   }
 }
 
@@ -59,7 +58,7 @@ class TodoForm extends React.Component {
   }
 
   handleClick () {
-    this.props.onAddTodo('huhuuu')
+    this.props.onAddTodo('hoohooo')
   }
 }
 
@@ -88,7 +87,7 @@ class Todo extends React.Component {
   };
 
   render () {
-    const textStyle = this.props.todo.completed ? {'text-decoration': 'line-through'} : {}
+    const textStyle = this.props.todo.completed ? {'textDecoration': 'line-through'} : {}
     return (
       <li className='todo'>
         <span style={textStyle}>

@@ -31,7 +31,7 @@ describe('todos reducer', () => {
   })
 
   describe('update todo', () => {
-    it('modifieds the text', () => {
+    it('modifies the text', () => {
       const action = {type: 'UPDATE_TODO', id: 0, updates: { text: 'Cool' }}
       store.dispatch(action)
       const expectedState = [{id: 0, text: 'Cool', completed: false}]
@@ -45,4 +45,14 @@ describe('todos reducer', () => {
       assert.deepEqual(expectedState, store.getState().todos)
     })
   })
+
+  describe('update input text', () => {
+    it('modifies the text that will be used to add a todo', () => {
+      const action = {type: 'UPDATE_INPUT_TEXT', inputText: 'hoohoo'}
+      store.dispatch(action)
+      const expectedState = 'hoohoo'
+      assert.equal(expectedState, store.getState().inputText)
+    })
+  })
 })
+
