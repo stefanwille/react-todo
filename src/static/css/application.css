@@ -1,9 +1,21 @@
 
 
+.todo-widget {
+  margin-top: 50px;
+}
+
 .todo-table td:first-child {
   width: 40px;
 }
 
 .todo-table td:second-child {
-  width: 200px;
+  width: 300px;
+}
+
+.todo-form form {
+  margin-bottom: 20px;
+}
+
+.todo-form input {
+  min-width: 250px;
 }

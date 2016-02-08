@@ -14,12 +14,13 @@ class TodoForm extends React.Component {
             <td>
               <form className='form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
                 <div className='form-group'>
-                  <input type='text' className='form-control'
+                  <input type='text' className='form-control textInput'
                   ref={node => this.input = node}
                   onKeyDown={this.handleKeyDown.bind(this)}
                   placeholder='What needs to be done?'
                 />
                 </div>
+                &nbsp;
                 <button className='btn btn-default'>
                   Add
                 </button>
@@ -44,8 +45,11 @@ class TodoForm extends React.Component {
   }
 
   addTodo () {
-    this.props.onAddTodo(this.input.value)
-    this.input.value = ''
+    const text = this.input.value
+    if (text !== '') {
+      this.props.onAddTodo(text)
+      this.input.value = ''
+    }
   }
 }
 
