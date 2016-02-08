@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 
 import { createStore } from 'redux'
 
-import { reducer } from 'redux/modules/todo'
+import { todoReducer } from 'redux/modules/todoreducer'
 
 import Root from 'containers/Root'
 
-let store = createStore(reducer)
+let store = createStore(todoReducer)
 
 // Render the React application to the DOM
 function render () {
