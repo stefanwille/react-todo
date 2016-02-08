@@ -12,13 +12,18 @@ class TodoForm extends React.Component {
           <tr>
             <td></td>
             <td>
-              <input type='text' ref={node => this.input = node} onKeyDown={this.handleKeyDown.bind(this)} />
-              &nbsp;
-              <button className='btn btn-default'
-                       onClick={this.handleClick.bind(this)}
-              >
-                Add
-              </button>
+              <form className='form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
+                <div className='form-group'>
+                  <input type='text' className='form-control'
+                  ref={node => this.input = node}
+                  onKeyDown={this.handleKeyDown.bind(this)}
+                  placeholder='What needs to be done?'
+                />
+                </div>
+                <button className='btn btn-default'>
+                  Add
+                </button>
+              </form>
             </td>
           </tr>
         </tbody>
@@ -26,17 +31,19 @@ class TodoForm extends React.Component {
     )
   }
 
-  handleClick () {
-    this.submit()
+  handleFormSubmit (event) {
+    event.preventDefault()
+    this.addTodo()
   }
 
   handleKeyDown (event) {
     if (event.keyCode === 13) {
-      this.submit()
+      event.preventDefault()
+      this.addTodo()
     }
   }
 
-  submit () {
+  addTodo () {
     this.props.onAddTodo(this.input.value)
     this.input.value = ''
   }
