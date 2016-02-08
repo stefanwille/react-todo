@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 
 import TodoForm from 'components/TodoForm/TodoForm'
 import TodoList from 'components/TodoList/TodoList'
+import TodoItemsLeft from 'components/TodoItemsLeft/TodoItemsLeft'
 import TodoFilter from 'components/TodoFilter/TodoFilter'
 
 export class TodoWidget extends React.Component {
@@ -14,7 +15,8 @@ export class TodoWidget extends React.Component {
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
           <TodoList todos={this.getFilteredTodos()} onTodoCompleted={this.handleTodoCompleted.bind(this)} />
-          <TodoFilter todos={this.props.store.getState().todos} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
+          <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
+          <TodoFilter todos={this.props.store.getState().todos} itemsLeft={this.getItemsLeft()} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
     )
   }
@@ -37,6 +39,12 @@ export class TodoWidget extends React.Component {
         throw new Error('Unknown todoFilter' + todoFilter)
     }
     return todos.filter(predicate)
+  }
+
+  getItemsLeft () {
+    const todos = this.props.store.getState().todos
+    const activeTodos = todos.filter((v) => !v.completed)
+    return activeTodos.length
   }
 
   handleAddTodo (text) {

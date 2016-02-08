@@ -15,23 +15,21 @@ class TodoFilter extends React.Component {
     return (
       <div className='todo-filter'>
 
-      <label>3 items left</label>
-
-      <label className='control-label input-group'>Filter</label>
-      <div className='btn-group' data-toggle='buttons'>
-        {
-          ['ALL', 'ACTIVE', 'COMPLETED'].map((todoFilter) => {
-            let className = 'btn btn-default'
-            let label = labels[todoFilter]
-            if (todoFilter === this.props.todoFilter) {
-              className += ' active'
-            }
-            return (
-              <label key={todoFilter} className={className}><input name='year' value={todoFilter} type='radio' onClick={() => { this.handleClick(todoFilter) }}/>{label}</label>
-            )
-          })
-        }
-      </div>
+        <label className='control-label input-group'>Filter</label>
+        <div className='btn-group' data-toggle='buttons'>
+          {
+            ['ALL', 'ACTIVE', 'COMPLETED'].map((todoFilter) => {
+              let className = 'btn btn-default'
+              let label = labels[todoFilter]
+              if (todoFilter === this.props.todoFilter) {
+                className += ' active'
+              }
+              return (
+                <label key={todoFilter} className={className}><input name='year' value={todoFilter} type='radio' onClick={() => { this.handleClick(todoFilter) }}/>{label}</label>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }
