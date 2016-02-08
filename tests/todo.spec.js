@@ -1,9 +1,9 @@
 import assert from 'assert'
 import { createStore } from 'redux'
 
-import { reducer, INITIAL_STATE } from 'redux/modules/todo'
+import { todoReducer, INITIAL_STATE } from 'redux/modules/todoreducer'
 
-let store = createStore(reducer)
+let store = createStore(todoReducer)
 
 const logState = () => {
   console.log('logState - current state after action:', store.getState())
