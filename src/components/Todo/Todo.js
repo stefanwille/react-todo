@@ -9,7 +9,7 @@ class Todo extends React.Component {
   render () {
     const textStyle = this.props.todo.completed ? {'textDecoration': 'line-through'} : {}
     return (
-      <tr>
+      <tr onMouseEnter={this.handleMouseEnter.bind(this)}>
         <td>
           <input type='checkbox' checked={this.props.todo.completed ? 'checked' : ''} onChange={() => { this.props.onCompleted(this.props.todo) } } />
         </td>
@@ -18,8 +18,15 @@ class Todo extends React.Component {
             {this.props.todo.text}
           </span>
         </td>
+        <td>
+          <a href='#'>X</a>
+        </td>
       </tr>
     )
+  }
+
+  handleMouseEnter () {
+    console.log("onMouseEnter")
   }
 }
 

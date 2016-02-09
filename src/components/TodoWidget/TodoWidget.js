@@ -16,7 +16,7 @@ export class TodoWidget extends React.Component {
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
           <TodoList todos={this.getFilteredTodos()} onTodoCompleted={this.handleTodoCompleted.bind(this)} />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
-          <TodoFilter todos={this.props.store.getState().todos} itemsLeft={this.getItemsLeft()} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
+          <TodoFilter todos={this.getTodos()} itemsLeft={this.getItemsLeft()} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
     )
   }
@@ -42,9 +42,12 @@ export class TodoWidget extends React.Component {
   }
 
   getItemsLeft () {
-    const todos = this.props.store.getState().todos
-    const activeTodos = todos.filter((v) => !v.completed)
+    const activeTodos = this.getTodos().filter((v) => !v.completed)
     return activeTodos.length
+  }
+
+  getTodos () {
+    return this.props.store.getState().todos
   }
 
   handleAddTodo (text) {
