@@ -16,7 +16,7 @@
 }
 
 .todo-form input {
-  min-width: 250x;
+  min-width: 300x;
 }
 
 .todo-items-left {
@@ -29,5 +29,8 @@
 }
 
 .todo-filter .selected {
+}
 
+.todo .delete-button-hidden {
+  visibility: hidden;
 }

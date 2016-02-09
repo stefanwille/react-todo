@@ -11,10 +11,15 @@ export class TodoWidget extends React.Component {
   };
 
   render () {
+    const deleteButtonOnTodo = this.props.store.getState().deleteButtonOnTodo
     return (
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
-          <TodoList todos={this.getFilteredTodos()} onTodoCompleted={this.handleTodoCompleted.bind(this)} />
+          <TodoList todos={this.getFilteredTodos()}
+                    onDeleteButtonVisibilityChanged={this.handleDeleteButtonVisibilityChanged.bind(this)}
+                    onTodoCompleted={this.handleTodoCompleted.bind(this)}
+                    deleteButtonOnTodo={deleteButtonOnTodo}
+            />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
           <TodoFilter todos={this.getTodos()} itemsLeft={this.getItemsLeft()} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
@@ -61,6 +66,11 @@ export class TodoWidget extends React.Component {
   handleTodoFilterChanged (todoFilter) {
     console.log('handleTodoFilterChanged', todoFilter)
     this.props.store.dispatch({type: 'SELECT_TODO_FILTER', todoFilter: todoFilter})
+  }
+
+  handleDeleteButtonVisibilityChanged (todo) {
+    console.log('handleDeleteButtonVisibilityChanged', todo)
+    this.props.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: todo ? todo.id : -1})
   }
 }
 

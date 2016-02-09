@@ -2,7 +2,8 @@ import 'babel-polyfill'
 
 export const INITIAL_STATE = {
   todos: [],
-  todoFilter: 'ALL'
+  todoFilter: 'ALL',
+  deleteButtonOnTodo: -1
 }
 
 export const todoReducer = (state = INITIAL_STATE, action) => {
@@ -15,7 +16,7 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
       const newTodo = {
         id: action.id,
         text: action.text,
-        completed: action.completed
+        completed: false
       }
       const extendedTodos = [...state.todos, newTodo]
       return { ...state, todos: extendedTodos }
@@ -26,6 +27,9 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
 
     case 'SELECT_TODO_FILTER':
       return { ...state, todoFilter: action.todoFilter }
+
+    case 'SHOW_DELETE_BUTTON_ON_TODO':
+      return { ...state, deleteButtonOnTodo: action.todo }
 
     default:
       return state

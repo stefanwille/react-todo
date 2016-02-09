@@ -23,7 +23,7 @@ describe('todos reducer', () => {
 
   describe('add todo', () => {
     it('adds a todo', () => {
-      const action = {type: 'ADD_TODO', id: 0, text: 'Hello', completed: false}
+      const action = {type: 'ADD_TODO', id: 0, text: 'Hello'}
       store.dispatch(action)
       const expectedState = [{id: 0, text: 'Hello', completed: false}]
       assert.deepEqual(expectedState, store.getState().todos)
@@ -52,6 +52,15 @@ describe('todos reducer', () => {
       store.dispatch(action)
       const expectedState = 'COMPLETED'
       assert.deepEqual(expectedState, store.getState().todoFilter)
+    })
+  })
+
+  describe('update the todo item that has a delete button', () => {
+    it('selects the todo filter', () => {
+      const actionShow = {type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: 1}
+      store.dispatch(actionShow)
+      const expectedState = 1
+      assert.deepEqual(expectedState, store.getState().deleteButtonOnTodo)
     })
   })
 })
