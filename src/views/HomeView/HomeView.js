@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import TodoWidget from 'components/TodoWidget/TodoWidget'
+import TodoWidget from 'containers/TodoWidget'
 
 export class HomeView extends React.Component {
   static propTypes = {
