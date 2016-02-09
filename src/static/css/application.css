@@ -15,6 +15,10 @@
   margin-bottom: 20px;
 }
 
+.todo-form input.text-input {
+  width: 275px;
+}
+
 .todo-items-left {
   margin-top: 40px;
 }

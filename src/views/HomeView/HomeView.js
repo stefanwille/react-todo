@@ -10,7 +10,7 @@ export class HomeView extends React.Component {
   render () {
     return (
       <div className='row'>
-        <h1>Todo App in React.js / Redux / ES6</h1>
+        <h1>Todos App in React.js / Redux / ES6</h1>
         <TodoWidget store={this.props.store} />
       </div>
     )
