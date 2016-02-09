@@ -17,7 +17,8 @@ export class TodoWidget extends React.Component {
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
           <TodoList todos={this.getFilteredTodos()}
                     onDeleteButtonVisibilityChanged={this.handleDeleteButtonVisibilityChanged.bind(this)}
-                    onTodoCompleted={this.handleTodoCompleted.bind(this)}
+                    onCompleted={this.handleCompleted.bind(this)}
+                    onDelete={this.handleDelete.bind(this)}
                     deleteButtonOnTodo={deleteButtonOnTodo}
             />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
@@ -58,9 +59,14 @@ export class TodoWidget extends React.Component {
     this.props.store.dispatch({type: 'ADD_TODO', text: text, completed: false, id: Date.now()})
   }
 
-  handleTodoCompleted (todo) {
+  handleCompleted (todo) {
     console.log('handleCompleted', todo)
     this.props.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
+  }
+
+  handleDelete (todo) {
+    console.log('handleDelete', todo)
+    this.props.store.dispatch({type: 'DELETE_TODO', id: todo.id})
   }
 
   handleTodoFilterChanged (todoFilter) {

@@ -5,6 +5,7 @@ class Todo extends React.Component {
     todo: PropTypes.any.isRequired,
     deleteButtonVisible: PropTypes.bool,
     onCompleted: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
     onDeleteButtonVisibilityChanged: PropTypes.func.isRequired
   };
 
@@ -34,17 +35,16 @@ class Todo extends React.Component {
     )
   }
 
-  handleDelete () {
-  }
-
   handleMouseEnter (event) {
-    console.log('handleMouseEnter')
     this.props.onDeleteButtonVisibilityChanged(this.props.todo)
   }
 
   handleMouseLeave (event) {
-    console.log('handleMouseLeave')
     this.props.onDeleteButtonVisibilityChanged(undefined)
+  }
+
+  handleDelete () {
+    this.props.onDelete(this.props.todo)
   }
 }
 

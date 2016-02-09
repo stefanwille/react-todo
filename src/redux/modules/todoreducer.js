@@ -25,6 +25,10 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
       const updatedTodos = state.todos.map(todo => (todo.id === action.id) ? { ...todo, ...action.updates } : todo)
       return { ...state, todos: updatedTodos }
 
+    case 'DELETE_TODO':
+      const remainingTodos = state.todos.filter(todo => todo.id !== action.id)
+      return { ...state, todos: remainingTodos }
+
     case 'SELECT_TODO_FILTER':
       return { ...state, todoFilter: action.todoFilter }
 
