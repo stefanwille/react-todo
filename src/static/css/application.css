@@ -8,7 +8,7 @@
 }
 
 .todo-table td:nth-child(2) {
-  width: 300px;
+  width: 250px;
 }
 
 .todo-form form {
@@ -17,14 +17,10 @@
 
 .todo-items-left {
   margin-top: 40px;
-
 }
 
 .todo-filter {
   margin-top: 20px;
-}
-
-.todo-filter .selected {
 }
 
 .todo .delete-button-hidden {
