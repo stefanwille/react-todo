@@ -3,11 +3,11 @@
   margin-top: 50px;
 }
 
-.todo-table td:first-child {
+.todo-table td:nth-child(1) {
   width: 40px;
 }
 
-.todo-table td:second-child {
+.todo-table td:nth-child(2) {
   width: 300px;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .todo-form input {
-  min-width: 250px;
+  min-width: 250x;
 }
 
 .todo-items-left {

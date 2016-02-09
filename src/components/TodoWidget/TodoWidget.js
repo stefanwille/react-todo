@@ -42,8 +42,7 @@ export class TodoWidget extends React.Component {
   }
 
   getItemsLeft () {
-    const activeTodos = this.getTodos().filter((v) => !v.completed)
-    return activeTodos.length
+    return this.getTodos().reduce((sum, todo) => todo.completed ? sum : sum + 1, 0)
   }
 
   getTodos () {
