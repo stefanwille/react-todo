@@ -4,11 +4,15 @@
 }
 
 .todo-table td:nth-child(1) {
-  width: 40px;
+  width: 35px;
 }
 
 .todo-table td:nth-child(2) {
-  width: 250px;
+  width: 245px;
+}
+
+.todo-table td:nth-child(3) {
+  width: 30px;
 }
 
 .todo-form form {
