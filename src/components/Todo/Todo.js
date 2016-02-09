@@ -11,7 +11,7 @@ class Todo extends React.Component {
 
   render () {
     const textStyle = this.props.todo.completed ? {'textDecoration': 'line-through'} : {}
-    let deleteButtonClassName = 'delete-button btn btn-default'
+    let deleteButtonClassName = 'delete-button close'
     if (!this.props.deleteButtonVisible) {
       deleteButtonClassName += ' delete-button-hidden'
     }
@@ -29,7 +29,9 @@ class Todo extends React.Component {
           </span>
         </td>
         <td>
-          <a className={deleteButtonClassName} onClick={this.handleDelete.bind(this)}>X</a>
+          <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={this.handleDelete.bind(this)}>
+            <span aria-hidden='true'>&times;</span>
+          </button>
         </td>
       </tr>
     )

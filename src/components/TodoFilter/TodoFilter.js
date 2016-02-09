@@ -8,8 +8,6 @@ class TodoFilter extends React.Component {
   };
 
   render () {
-    console.log('TodoFilter render', this.props.todoFilter)
-
     const labels = {ALL: 'All', ACTIVE: 'Active', COMPLETED: 'Completed'}
 
     return (
@@ -35,7 +33,6 @@ class TodoFilter extends React.Component {
   }
 
   handleClick (todoFilter) {
-    console.log('handleClick', todoFilter)
     this.props.onChange(todoFilter)
   }
 }

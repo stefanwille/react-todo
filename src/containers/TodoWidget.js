@@ -60,22 +60,18 @@ export class TodoWidget extends React.Component {
   }
 
   handleCompleted (todo) {
-    console.log('handleCompleted', todo)
     this.props.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
   }
 
   handleDelete (todo) {
-    console.log('handleDelete', todo)
     this.props.store.dispatch({type: 'DELETE_TODO', id: todo.id})
   }
 
   handleTodoFilterChanged (todoFilter) {
-    console.log('handleTodoFilterChanged', todoFilter)
     this.props.store.dispatch({type: 'SELECT_TODO_FILTER', todoFilter: todoFilter})
   }
 
   handleDeleteButtonVisibilityChanged (todo) {
-    console.log('handleDeleteButtonVisibilityChanged', todo)
     this.props.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: todo ? todo.id : -1})
   }
 }
