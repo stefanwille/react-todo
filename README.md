@@ -1,7 +1,11 @@
 Todo Demo App in React.js / Redux / ES6
 =======================
 
-Try it at http://www.stefanwille.com/projects/react-todo/
+Live demo at http://react-todo.stefanwille.com
+
+
+Building
+----------
 
 Run with
 
