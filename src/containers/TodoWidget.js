@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
 import TodoForm from 'components/TodoForm/TodoForm'
 import TodoList from 'components/TodoList/TodoList'
@@ -7,11 +7,22 @@ import TodoFilter from 'components/TodoFilter/TodoFilter'
 
 export class TodoWidget extends React.Component {
   static propTypes = {
-    store: PropTypes.object.isRequired
   };
 
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
+
+  get reduxState () {
+    return this.store.getState()
+  }
+
+  get store () {
+    return this.context.store
+  }
+
   render () {
-    const state = this.props.store.getState()
+    const state = this.reduxState
     return (
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
@@ -28,7 +39,7 @@ export class TodoWidget extends React.Component {
   }
 
   getFilteredTodos () {
-    const state = this.props.store.getState()
+    const state = this.reduxState
     const todos = state.todos
     const todoFilter = state.todoFilter
     let predicate
@@ -53,28 +64,28 @@ export class TodoWidget extends React.Component {
   }
 
   getTodos () {
-    const state = this.props.store.getState()
+    const state = this.reduxState
     return state.todos
   }
 
   handleAddTodo (text) {
-    this.props.store.dispatch({type: 'ADD_TODO', text: text, completed: false, id: Date.now()})
+    this.store.dispatch({type: 'ADD_TODO', text: text, completed: false, id: Date.now()})
   }
 
   handleCompleted (todo) {
-    this.props.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
+    this.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
   }
 
   handleDelete (todo) {
-    this.props.store.dispatch({type: 'DELETE_TODO', id: todo.id})
+    this.store.dispatch({type: 'DELETE_TODO', id: todo.id})
   }
 
   handleTodoFilterChanged (todoFilter) {
-    this.props.store.dispatch({type: 'SELECT_TODO_FILTER', todoFilter: todoFilter})
+    this.store.dispatch({type: 'SELECT_TODO_FILTER', todoFilter: todoFilter})
   }
 
   handleDeleteButtonVisibilityChanged (todo) {
-    this.props.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: todo ? todo.id : -1})
+    this.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: todo ? todo.id : -1})
   }
 }
 

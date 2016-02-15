@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-
 import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
 import { todoReducer } from 'redux/modules/todoreducer'
 
@@ -13,7 +13,10 @@ window.store = store
 // Render the React application to the DOM
 function render () {
   ReactDOM.render(
-    <Root store={store} />,
+      <Provider store={store}>
+        <Root/>
+      </Provider>
+    ,
     document.getElementById('root')
   )
 }
