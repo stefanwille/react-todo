@@ -8,7 +8,7 @@ class TodoForm extends React.Component {
   render () {
     return (
       <div className='todo-form'>
-      <form className='form-inline' onSubmit={event => this.handleFormSubmit(event)}>
+      <form className='form-inline' onSubmit={event => this.handleSubmit(event)}>
           <input type='text'
               className='form-control text-input'
               ref={node => this.input = node}
@@ -21,14 +21,14 @@ class TodoForm extends React.Component {
     )
   }
 
-  handleFormSubmit (event) {
+  handleSubmit (event) {
     event.preventDefault()
 
     const text = this.input.value
     if (text !== '') {
       this.props.onAddTodo(text)
-      this.input.value = ''
     }
+    this.input.value = ''
   }
 }
 
