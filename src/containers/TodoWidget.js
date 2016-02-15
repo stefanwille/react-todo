@@ -21,14 +21,23 @@ export class TodoWidget extends React.Component {
     return this.context.store
   }
 
+  componentDidMount () {
+    this.unsubscribe = this.store.subscribe(() => { this.forceUpdate() })
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe()
+  }
+
   render () {
+    console.log('render.....')
     const state = this.reduxState
     return (
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
           <TodoList todos={this.getFilteredTodos()}
                     deleteButtonOnTodo={state.deleteButtonOnTodo}
-                    onDeleteButtonVisibilityChanged={this.handleDeleteButtonVisibilityChanged.bind(this)}
+                    onDeleteButtonVisibilityChanged={todo => { this.handleDeleteButtonVisibilityChanged(todo) }}
                     onCompleted={this.handleCompleted.bind(this)}
                     onDelete={this.handleDelete.bind(this)} />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />

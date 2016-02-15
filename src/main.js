@@ -20,8 +20,6 @@ function render () {
   )
 }
 
-store.subscribe(render)
-
 const logState = () => {
   console.log('logState - current state after action:', store.getState())
 }

@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react'
 
 import Todo from 'components/Todo/Todo'
 
-const TodoList = ({todos, onCompleted, onDelete, onDeleteButtonVisibilityChanged, deleteButtonOnTodo}) => (
+const TodoList = ({todos, onCompleted, onDelete, onDeleteButtonVisibilityChanged, deleteButtonOnTodo}) => {
+  console.log('todos...', todos)
+
+  return (
   <table className='todo-list todo-table'>
     <tbody>
       {
@@ -19,7 +22,8 @@ const TodoList = ({todos, onCompleted, onDelete, onDeleteButtonVisibilityChanged
       }
     </tbody>
   </table>
-)
+  )
+}
 
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
