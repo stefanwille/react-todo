@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react'
 
-const Todo = ({todo, deleteButtonVisible, onCompleted, onDelete, onDeleteButtonVisibilityChanged}) => {
+const Todo = ({
+    todo,
+    deleteButtonVisible,
+    onCompleted,
+    onDelete,
+    onDeleteButtonVisibilityChanged
+  }) => {
+  console.log('Render Todo', todo.text)
   const textStyle = todo.completed ? {'textDecoration': 'line-through'} : {}
   let deleteButtonClassName = 'delete-button close'
   if (!deleteButtonVisible) {
