@@ -17,7 +17,7 @@ const TodoFilterOption = ({filter, active, onChange}) => {
       <input name='year'
               value={filter}
               type='radio'
-              onClick={onChange.bind(this, filter)}/>{label}
+              onClick={() => onChange(filter)}/>{label}
     </label>
   )
 }

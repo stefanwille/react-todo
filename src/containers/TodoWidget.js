@@ -34,16 +34,16 @@ export class TodoWidget extends React.Component {
     const state = this.reduxState
     return (
       <div className='todo-widget'>
-          <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
+          <TodoForm onAddTodo={text => this.handleAddTodo(text)} />
           <TodoList todos={this.getFilteredTodos()}
                     deleteButtonOnTodo={state.deleteButtonOnTodo}
-                    onDeleteButtonVisibilityChanged={todo => { this.handleDeleteButtonVisibilityChanged(todo) }}
-                    onCompleted={this.handleCompleted.bind(this)}
-                    onDelete={this.handleDelete.bind(this)} />
+                    onDeleteButtonVisibilityChanged={todo => this.handleDeleteButtonVisibilityChanged(todo)}
+                    onCompleted={todo => this.handleCompleted(todo)}
+                    onDelete={todo => this.handleDelete(todo)} />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
           <TodoFilter itemsLeft={this.getItemsLeft()}
                       selected={state.todoFilter}
-                      onChange={this.handleTodoFilterChanged.bind(this)} />
+                      onChange={todoFilter => this.handleTodoFilterChanged(todoFilter)} />
       </div>
     )
   }

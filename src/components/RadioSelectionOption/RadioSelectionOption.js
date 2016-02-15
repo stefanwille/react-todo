@@ -10,7 +10,7 @@ const RadioSelectionOption = ({option, label, active, onChange}) => {
       <input
               value={option}
               type='radio'
-              onClick={onChange.bind(this, option)}/>{label}
+              onClick={() => onChange(option)}/>{label}
     </label>
   )
 }

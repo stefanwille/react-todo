@@ -15,8 +15,8 @@ const Todo = ({
   }
   return (
     <tr className='todo'
-          onMouseEnter={onDeleteButtonVisibilityChanged.bind(this, todo)}
-          onMouseLeave={onDeleteButtonVisibilityChanged.bind(this, undefined)}
+          onMouseEnter={() => onDeleteButtonVisibilityChanged(todo)}
+          onMouseLeave={() => onDeleteButtonVisibilityChanged(undefined)}
       >
       <td>
         <input type='checkbox' checked={todo.completed ? 'checked' : ''} onChange={() => { onCompleted(todo) } } />
@@ -27,7 +27,7 @@ const Todo = ({
         </span>
       </td>
       <td>
-        <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={onDelete.bind(this, todo)}>
+        <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={() => onDelete(todo)}>
           <span aria-hidden='true'>&times;</span>
         </button>
       </td>

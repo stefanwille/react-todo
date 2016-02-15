@@ -8,7 +8,7 @@ class TodoForm extends React.Component {
   render () {
     return (
       <div className='todo-form'>
-      <form className='form-inline' onSubmit={this.handleFormSubmit.bind(this)}>
+      <form className='form-inline' onSubmit={event => this.handleFormSubmit(event)}>
           <input type='text'
               className='form-control text-input'
               ref={node => this.input = node}
