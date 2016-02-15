@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 const Todo = ({todo, deleteButtonVisible, onCompleted, onDelete, onDeleteButtonVisibilityChanged}) => {
   const textStyle = todo.completed ? {'textDecoration': 'line-through'} : {}
@@ -26,6 +26,14 @@ const Todo = ({todo, deleteButtonVisible, onCompleted, onDelete, onDeleteButtonV
       </td>
     </tr>
   )
+}
+
+Todo.propTypes = {
+  todo: PropTypes.object.isRequired,
+  deleteButtonVisible: PropTypes.bool.isRequired,
+  onCompleted: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onDeleteButtonVisibilityChanged: PropTypes.func.isRequired
 }
 
 export default Todo
