@@ -8,7 +8,6 @@ import { todoReducer } from 'redux/modules/todoreducer'
 import Root from 'containers/Root'
 
 const store = createStore(todoReducer)
-window.store = store
 
 // Render the React application to the DOM
 function render () {
