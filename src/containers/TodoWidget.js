@@ -21,7 +21,16 @@ export class TodoWidget extends React.Component {
     return this.context.store
   }
 
+  componentDidMount () {
+    this.unsubscribe = this.store.subscribe(() => { this.forceUpdate() })
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe()
+  }
+
   render () {
+    console.log('render.....')
     const state = this.reduxState
     return (
       <div className='todo-widget'>
