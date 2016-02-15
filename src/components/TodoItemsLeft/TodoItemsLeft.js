@@ -1,17 +1,9 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 
-class TodoItemsLeft extends React.Component {
-  static propTypes = {
-    itemsLeft: PropTypes.number.isRequired
-  };
-
-  render () {
-    return (
-      <div className='todo-items-left'>
-        <label>{this.props.itemsLeft} items left</label>
-      </div>
-    )
-  }
-}
+const TodoItemsLeft = ({itemsLeft}) => (
+  <div className='todo-items-left'>
+    <label>{itemsLeft} items left</label>
+  </div>
+)
 
 export default TodoItemsLeft
