@@ -7,18 +7,18 @@ const TodoFilter = ({todos, todoFilter, onChange}) => (
     <label className='control-label input-group'>Filter</label>
     <div className='btn-group' data-toggle='buttons'>
       {
-        ['ALL', 'ACTIVE', 'COMPLETED'].map((todoFilter) => {
+        ['ALL', 'ACTIVE', 'COMPLETED'].map((filter) => {
           let className = 'btn btn-default'
-          if (todoFilter === this.props.todoFilter) {
+          if (filter === todoFilter) {
             className += ' active'
           }
-          const label = labels[todoFilter]
+          const label = labels[filter]
           return (
-            <label key={todoFilter} className={className}>
+            <label key={filter} className={className}>
               <input name='year'
-                      value={todoFilter}
+                      value={filter}
                       type='radio'
-                      onClick={this.props.onChange.bind(this, todoFilter)}/>{label}
+                      onClick={onChange.bind(this, filter)}/>{label}
             </label>
           )
         })
@@ -28,3 +28,4 @@ const TodoFilter = ({todos, todoFilter, onChange}) => (
 )
 
 export default TodoFilter
+
