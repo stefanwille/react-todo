@@ -1,6 +1,10 @@
 import React from 'react'
 
-const labels = {ALL: 'All', ACTIVE: 'Active', COMPLETED: 'Completed'}
+const labels = {
+  ALL: 'All',
+  ACTIVE: 'Active',
+  COMPLETED: 'Completed'
+}
 
 const TodoFilter = ({todos, todoFilter, onChange}) => (
   <div className='todo-filter'>
@@ -28,4 +32,3 @@ const TodoFilter = ({todos, todoFilter, onChange}) => (
 )
 
 export default TodoFilter
-
