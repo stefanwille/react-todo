@@ -23,17 +23,18 @@ class TodoFilter extends React.Component {
                 className += ' active'
               }
               return (
-                <label key={todoFilter} className={className}><input name='year' value={todoFilter} type='radio' onClick={() => { this.handleClick(todoFilter) }}/>{label}</label>
+                <label key={todoFilter} className={className}>
+                  <input name='year'
+                          value={todoFilter}
+                          type='radio'
+                          onClick={this.props.onChange.bind(this, todoFilter)}/>{label}
+                </label>
               )
             })
           }
         </div>
       </div>
     )
-  }
-
-  handleClick (todoFilter) {
-    this.props.onChange(todoFilter)
   }
 }
 
