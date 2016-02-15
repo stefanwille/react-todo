@@ -27,36 +27,35 @@ export class TodoWidget extends React.Component {
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
           <TodoList todos={this.getFilteredTodos()}
+                    deleteButtonOnTodo={state.deleteButtonOnTodo}
                     onDeleteButtonVisibilityChanged={this.handleDeleteButtonVisibilityChanged.bind(this)}
                     onCompleted={this.handleCompleted.bind(this)}
-                    onDelete={this.handleDelete.bind(this)}
-                    deleteButtonOnTodo={state.deleteButtonOnTodo}
-            />
+                    onDelete={this.handleDelete.bind(this)} />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
-          <TodoFilter itemsLeft={this.getItemsLeft()} selected={state.todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
+          <TodoFilter itemsLeft={this.getItemsLeft()}
+                      selected={state.todoFilter}
+                      onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
     )
   }
 
   getFilteredTodos () {
-    const state = this.reduxState
-    const todos = state.todos
-    const todoFilter = state.todoFilter
-    let predicate
-    switch (todoFilter) {
-      case 'ALL':
-        predicate = (v) => v
-        break
-      case 'ACTIVE':
-        predicate = (v) => !v.completed
-        break
-      case 'COMPLETED':
-        predicate = (v) => v.completed
-        break
-      default:
-        throw new Error('Unknown todoFilter' + todoFilter)
-    }
+    const todos = this.getTodos()
+    const predicate = this.getTodoFilterPredicate()
     return todos.filter(predicate)
+  }
+
+  getTodoFilterPredicate () {
+    switch (this.reduxState.todoFilter) {
+      case 'ALL':
+        return (v) => v
+      case 'ACTIVE':
+        return (v) => !v.completed
+      case 'COMPLETED':
+        return (v) => v.completed
+      default:
+        throw new Error('Unknown todoFilter' + this.reduxState.todoFilter)
+    }
   }
 
   getItemsLeft () {
@@ -64,8 +63,7 @@ export class TodoWidget extends React.Component {
   }
 
   getTodos () {
-    const state = this.reduxState
-    return state.todos
+    return this.reduxState.todos
   }
 
   handleAddTodo (text) {
