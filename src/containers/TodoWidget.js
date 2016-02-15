@@ -11,7 +11,7 @@ export class TodoWidget extends React.Component {
   };
 
   render () {
-    const deleteButtonOnTodo = this.props.store.getState().deleteButtonOnTodo
+    const state = this.props.store.getState()
     return (
       <div className='todo-widget'>
           <TodoForm onAddTodo={this.handleAddTodo.bind(this)} />
@@ -19,17 +19,18 @@ export class TodoWidget extends React.Component {
                     onDeleteButtonVisibilityChanged={this.handleDeleteButtonVisibilityChanged.bind(this)}
                     onCompleted={this.handleCompleted.bind(this)}
                     onDelete={this.handleDelete.bind(this)}
-                    deleteButtonOnTodo={deleteButtonOnTodo}
+                    deleteButtonOnTodo={state.deleteButtonOnTodo}
             />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
-          <TodoFilter itemsLeft={this.getItemsLeft()} selected={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
+          <TodoFilter itemsLeft={this.getItemsLeft()} selected={state.todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
     )
   }
 
   getFilteredTodos () {
-    const todos = this.props.store.getState().todos
-    const todoFilter = this.props.store.getState().todoFilter
+    const state = this.props.store.getState()
+    const todos = state.todos
+    const todoFilter = state.todoFilter
     let predicate
     switch (todoFilter) {
       case 'ALL':
@@ -52,7 +53,8 @@ export class TodoWidget extends React.Component {
   }
 
   getTodos () {
-    return this.props.store.getState().todos
+    const state = this.props.store.getState()
+    return state.todos
   }
 
   handleAddTodo (text) {
