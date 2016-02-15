@@ -1,33 +1,14 @@
 import React from 'react'
 
+import Container from 'containers/Container'
 import TodoForm from 'components/TodoForm/TodoForm'
 import TodoList from 'components/TodoList/TodoList'
 import TodoItemsLeft from 'components/TodoItemsLeft/TodoItemsLeft'
 import TodoFilter from 'components/TodoFilter/TodoFilter'
 
-export class TodoWidget extends React.Component {
+export class TodoWidget extends Container {
   static propTypes = {
   };
-
-  static contextTypes = {
-    store: React.PropTypes.object
-  };
-
-  get reduxState () {
-    return this.store.getState()
-  }
-
-  get store () {
-    return this.context.store
-  }
-
-  componentDidMount () {
-    this.unsubscribe = this.store.subscribe(() => { this.forceUpdate() })
-  }
-
-  componentWillUnmount () {
-    this.unsubscribe()
-  }
 
   render () {
     console.log('render.....')

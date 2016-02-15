@@ -21,7 +21,7 @@ function render () {
 }
 
 const logState = () => {
-  console.log('logState - current state after action:', store.getState())
+  console.log('State after action:', store.getState())
 }
 store.subscribe(logState)
 
