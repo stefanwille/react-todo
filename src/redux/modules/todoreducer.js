@@ -27,7 +27,7 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
 
     case 'DELETE_TODO':
       const remainingTodos = state.todos.filter(todo => todo.id !== action.id)
-      return { ...state, todos: remainingTodos }
+      return { ...state, todos: remainingTodos, deleteButtonOnTodo: -1 }
 
     case 'SELECT_TODO_FILTER':
       return { ...state, todoFilter: action.todoFilter }
