@@ -1,30 +1,27 @@
 import React, { PropTypes } from 'react'
 
-import TodoFilterOption from 'components/TodoFilterOption/TodoFilterOption'
+import RadioSelection from 'components/RadioSelection/RadioSelection'
 
-const TodoFilter = ({todos, todoFilter, onChange}) => (
+const labels = {
+  ALL: 'All',
+  ACTIVE: 'Active',
+  COMPLETED: 'Completed'
+}
+
+const TodoFilter = ({selected, onChange}) => (
   <div className='todo-filter'>
     <label className='control-label input-group'>Filter</label>
-    <div className='btn-group' data-toggle='buttons'>
-      {
-        ['ALL', 'ACTIVE', 'COMPLETED'].map((filter) => {
-          return (
-            <TodoFilterOption
-                  key={filter}
-                  filter={filter}
-                  active={filter === todoFilter}
-                  onChange={onChange}
-                />
-          )
-        })
-      }
-    </div>
+    <RadioSelection
+        options={['ALL', 'ACTIVE', 'COMPLETED']}
+        labels={labels}
+        selected={selected}
+        onChange={onChange}
+    />
   </div>
 )
 
 TodoFilter.propTypes = {
-  todos: PropTypes.array.isRequired,
-  todoFilter: PropTypes.string.isRequired,
+  selected: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 }
 

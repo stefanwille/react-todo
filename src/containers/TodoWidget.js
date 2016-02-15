@@ -22,7 +22,7 @@ export class TodoWidget extends React.Component {
                     deleteButtonOnTodo={deleteButtonOnTodo}
             />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
-          <TodoFilter todos={this.getTodos()} itemsLeft={this.getItemsLeft()} todoFilter={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
+          <TodoFilter itemsLeft={this.getItemsLeft()} selected={this.props.store.getState().todoFilter} onChange={this.handleTodoFilterChanged.bind(this)} />
       </div>
     )
   }
