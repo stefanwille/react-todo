@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 const labels = {
   ALL: 'All',
@@ -30,5 +30,11 @@ const TodoFilter = ({todos, todoFilter, onChange}) => (
     </div>
   </div>
 )
+
+TodoFilter.propTypes = {
+  todos: PropTypes.array.isRequired,
+  todoFilter: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}
 
 export default TodoFilter
