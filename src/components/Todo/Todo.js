@@ -17,8 +17,8 @@ class Todo extends React.Component {
     }
     return (
       <tr className='todo'
-            onMouseEnter={this.handleMouseEnter.bind(this)}
-            onMouseLeave={this.handleMouseLeave.bind(this)}
+            onMouseEnter={this.props.onDeleteButtonVisibilityChanged.bind(this, this.props.todo)}
+            onMouseLeave={this.props.onDeleteButtonVisibilityChanged.bind(this, undefined)}
         >
         <td>
           <input type='checkbox' checked={this.props.todo.completed ? 'checked' : ''} onChange={() => { this.props.onCompleted(this.props.todo) } } />
@@ -29,24 +29,12 @@ class Todo extends React.Component {
           </span>
         </td>
         <td>
-          <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={this.handleDelete.bind(this)}>
+          <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={this.props.onDelete.bind(this, this.props.todo)}>
             <span aria-hidden='true'>&times;</span>
           </button>
         </td>
       </tr>
     )
-  }
-
-  handleMouseEnter (event) {
-    this.props.onDeleteButtonVisibilityChanged(this.props.todo)
-  }
-
-  handleMouseLeave (event) {
-    this.props.onDeleteButtonVisibilityChanged(undefined)
-  }
-
-  handleDelete () {
-    this.props.onDelete(this.props.todo)
   }
 }
 
