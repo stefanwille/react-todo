@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-class TodoForm extends React.Component {
+class TodoFormPresentation extends React.Component {
   static propTypes = {
     onAddTodo: PropTypes.func.isRequired
   };
@@ -23,13 +23,9 @@ class TodoForm extends React.Component {
 
   handleSubmit (event) {
     event.preventDefault()
-
-    const text = this.input.value
-    if (text !== '') {
-      this.props.onAddTodo(text)
-    }
+    this.props.onAddTodo(this.input.value)
     this.input.value = ''
   }
 }
 
-export default TodoForm
+export default TodoFormPresentation
