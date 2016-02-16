@@ -5,7 +5,7 @@ import Container from 'containers/Container'
 import {addTodo, selectTodoFilter} from 'actions/actions'
 
 import TodoForm from 'components/TodoForm/TodoForm'
-import TodoList from 'containers/TodoList/TodoList'
+import TodoList from 'containers/TodoList'
 import TodoItemsLeft from 'components/TodoItemsLeft/TodoItemsLeft'
 import TodoFilter from 'components/TodoFilter/TodoFilter'
 

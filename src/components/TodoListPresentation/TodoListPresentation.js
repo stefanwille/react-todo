@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import Todo from 'containers/Todo/Todo'
+import Todo from 'containers/Todo'
 
 const TodoListPresentation = ({todos}) => {
   return (
@@ -11,7 +11,7 @@ const TodoListPresentation = ({todos}) => {
                             <Todo todo={todo}
                                   key={todo.id}
                             />
-                        )
+                          )
         )
       }
     </tbody>
