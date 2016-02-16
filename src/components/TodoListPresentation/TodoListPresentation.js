@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 
-import Todo from 'components/Todo/Todo'
+import Todo from 'containers/Todo/Todo'
 
-const TodoList = ({todos}) => {
+const TodoListPresentation = ({todos}) => {
   return (
   <table className='todo-list todo-table'>
     <tbody>
@@ -19,8 +19,8 @@ const TodoList = ({todos}) => {
   )
 }
 
-TodoList.propTypes = {
+TodoListPresentation.propTypes = {
   todos: PropTypes.array.isRequired
 }
 
-export default TodoList
+export default TodoListPresentation

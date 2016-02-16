@@ -27,7 +27,7 @@ const TodoPresentation = ({
         </span>
       </td>
       <td>
-        <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={() => onDelete(todo)}>
+        <button type='button' className={deleteButtonClassName} onClick={() => onDelete(todo)}>
           <span aria-hidden='true'>&times;</span>
         </button>
       </td>
