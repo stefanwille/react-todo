@@ -6,7 +6,7 @@ import {selectTodoFilter} from 'actions/actions'
 
 import TodoForm from 'containers/TodoForm'
 import TodoList from 'containers/TodoList'
-import TodoItemsLeft from 'components/TodoItemsLeft/TodoItemsLeft'
+import TodoItemsLeft from 'containers/TodoItemsLeft'
 import TodoFilter from 'components/TodoFilter/TodoFilter'
 
 export class TodoWidget extends Container {
@@ -15,15 +15,11 @@ export class TodoWidget extends Container {
       <div className='todo-widget'>
           <TodoForm />
           <TodoList />
-          <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
+          <TodoItemsLeft />
           <TodoFilter selected={this.getTodoFilter()}
                       onChange={todoFilter => this.store.dispatch(selectTodoFilter(todoFilter))} />
       </div>
     )
-  }
-
-  getItemsLeft () {
-    return this.getTodos().reduce((sum, todo) => todo.completed ? sum : sum + 1, 0)
   }
 
   getTodos () {
