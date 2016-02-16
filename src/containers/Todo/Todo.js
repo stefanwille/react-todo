@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 
+import {updateTodo, deleteTodo, showDeleteButtonOnTodo} from 'actions/actions'
 import Container from 'containers/Container'
 import TodoPresentation from 'components/TodoPresentation/TodoPresentation'
 
@@ -24,15 +25,15 @@ class Todo extends Container {
   }
 
   handleCompleted () {
-    this.store.dispatch({type: 'UPDATE_TODO', id: this.todo.id, updates: {completed: !this.todo.completed}})
+    this.store.dispatch(updateTodo(this.todo, {completed: !this.todo.completed}))
   }
 
   handleDelete () {
-    this.store.dispatch({type: 'DELETE_TODO', id: this.todo.id})
+    this.store.dispatch(deleteTodo(this.todo))
   }
 
   handleDeleteButtonVisibilityChanged (id) {
-    this.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: id})
+    this.store.dispatch(showDeleteButtonOnTodo(id))
   }
 
   get todo () {
