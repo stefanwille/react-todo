@@ -15,7 +15,7 @@ const Todo = ({
   }
   return (
     <tr className='todo'
-          onMouseEnter={() => onDeleteButtonVisibilityChanged(todo)}
+          onMouseOver={() => onDeleteButtonVisibilityChanged(todo)}
           onMouseLeave={() => onDeleteButtonVisibilityChanged(undefined)}
       >
       <td>
