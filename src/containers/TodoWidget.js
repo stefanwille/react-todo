@@ -11,16 +11,11 @@ export class TodoWidget extends Container {
   };
 
   render () {
-    console.log('render.....')
     const state = this.reduxState
     return (
       <div className='todo-widget'>
           <TodoForm onAddTodo={text => this.handleAddTodo(text)} />
-          <TodoList todos={this.getFilteredTodos()}
-                    deleteButtonOnTodo={state.deleteButtonOnTodo}
-                    onDeleteButtonVisibilityChanged={todo => this.handleDeleteButtonVisibilityChanged(todo)}
-                    onCompleted={todo => this.handleCompleted(todo)}
-                    onDelete={todo => this.handleDelete(todo)} />
+          <TodoList todos={this.getFilteredTodos()} />
           <TodoItemsLeft itemsLeft={this.getItemsLeft()} />
           <TodoFilter itemsLeft={this.getItemsLeft()}
                       selected={state.todoFilter}
@@ -60,20 +55,8 @@ export class TodoWidget extends Container {
     this.store.dispatch({type: 'ADD_TODO', text: text, completed: false, id: Date.now()})
   }
 
-  handleCompleted (todo) {
-    this.store.dispatch({type: 'UPDATE_TODO', id: todo.id, updates: {completed: !todo.completed}})
-  }
-
-  handleDelete (todo) {
-    this.store.dispatch({type: 'DELETE_TODO', id: todo.id})
-  }
-
   handleTodoFilterChanged (todoFilter) {
     this.store.dispatch({type: 'SELECT_TODO_FILTER', todoFilter: todoFilter})
-  }
-
-  handleDeleteButtonVisibilityChanged (todo) {
-    this.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: todo ? todo.id : -1})
   }
 }
 

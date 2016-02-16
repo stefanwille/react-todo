@@ -1,46 +1,43 @@
 import React, { PropTypes } from 'react'
 
-const Todo = ({
-    todo,
-    deleteButtonVisible,
-    onCompleted,
-    onDelete,
-    onDeleteButtonVisibilityChanged
-  }) => {
-  console.log('Render Todo', todo.text)
-  const textStyle = todo.completed ? {'textDecoration': 'line-through'} : {}
-  let deleteButtonClassName = 'delete-button close'
-  if (!deleteButtonVisible) {
-    deleteButtonClassName += ' delete-button-hidden'
-  }
-  return (
-    <tr className='todo'
-          onMouseOver={() => onDeleteButtonVisibilityChanged(todo)}
-          onMouseLeave={() => onDeleteButtonVisibilityChanged(undefined)}
-      >
-      <td>
-        <input type='checkbox' checked={todo.completed ? 'checked' : ''} onChange={() => { onCompleted(todo) } } />
-      </td>
-      <td>
-        <span style={textStyle}>
-          {todo.text}
-        </span>
-      </td>
-      <td>
-        <button type='button' className={deleteButtonClassName} aria-label='Close' onClick={() => onDelete(todo)}>
-          <span aria-hidden='true'>&times;</span>
-        </button>
-      </td>
-    </tr>
-  )
-}
+import Container from 'containers/Container'
+import TodoPresentation from 'components/TodoPresentation/TodoPresentation'
 
-Todo.propTypes = {
-  todo: PropTypes.object.isRequired,
-  deleteButtonVisible: PropTypes.bool.isRequired,
-  onCompleted: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onDeleteButtonVisibilityChanged: PropTypes.func.isRequired
+class Todo extends Container {
+  static propTypes = {
+    todo: PropTypes.object.isRequired
+  };
+
+  render () {
+    return (
+      <TodoPresentation todo={this.todo}
+                      deleteButtonVisible={this.deleteButtonVisible()}
+                      onCompleted={() => this.handleCompleted()}
+                      onDelete={() => this.handleDelete()}
+                      onDeleteButtonVisibilityChanged={(id) => this.handleDeleteButtonVisibilityChanged(id)}
+      />
+    )
+  }
+
+  deleteButtonVisible () {
+    return this.reduxState.deleteButtonOnTodo === this.todo.id
+  }
+
+  handleCompleted () {
+    this.store.dispatch({type: 'UPDATE_TODO', id: this.todo.id, updates: {completed: !this.todo.completed}})
+  }
+
+  handleDelete () {
+    this.store.dispatch({type: 'DELETE_TODO', id: this.todo.id})
+  }
+
+  handleDeleteButtonVisibilityChanged (id) {
+    this.store.dispatch({type: 'SHOW_DELETE_BUTTON_ON_TODO', todo: id})
+  }
+
+  get todo () {
+    return this.props.todo
+  }
 }
 
 export default Todo
