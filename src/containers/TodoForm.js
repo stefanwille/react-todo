@@ -3,16 +3,16 @@ import {connect} from 'react-redux'
 import {addTodo} from 'actions/actions'
 import TodoFormPresentation from 'components/TodoFormPresentation/TodoFormPresentation'
 
-const mapStateToProps = (state) => {
-  return {}
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTodo: (text) => (text !== '') ? dispatch(addTodo(text)) : ''
+    onAddTodo: (text) => {
+      if (text !== '') {
+        dispatch(addTodo(text))
+      }
+    }
   }
 }
 
-const TodoForm = connect(mapStateToProps, mapDispatchToProps)(TodoFormPresentation)
+const TodoForm = connect(undefined, mapDispatchToProps)(TodoFormPresentation)
 
 export default TodoForm
