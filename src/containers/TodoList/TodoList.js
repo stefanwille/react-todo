@@ -1,41 +1,36 @@
-import React from 'react'
-
-import Container from 'containers/Container'
+import {connect} from 'react-redux'
 
 import TodoListPresentation from 'components/TodoListPresentation/TodoListPresentation'
 
-class TodoList extends Container {
-  static propTypes = {
-  };
+const getVisibleTodos = (todos, todoFilter) => {
+  const predicate = getTodoFilterPredicate(todoFilter)
+  return todos.filter(predicate)
+}
 
-  render () {
-    return (
-      <TodoListPresentation todos={this.getVisibleTodos()} />
-    )
-  }
-
-  getVisibleTodos () {
-    const todos = this.getTodos()
-    const predicate = this.getTodoFilterPredicate()
-    return todos.filter(predicate)
-  }
-
-  getTodoFilterPredicate () {
-    switch (this.reduxState.todoFilter) {
-      case 'ALL':
-        return (v) => v
-      case 'ACTIVE':
-        return (v) => !v.completed
-      case 'COMPLETED':
-        return (v) => v.completed
-      default:
-        throw new Error('Unknown todoFilter' + this.reduxState.todoFilter)
-    }
-  }
-
-  getTodos () {
-    return this.reduxState.todos
+const getTodoFilterPredicate = (todoFilter) => {
+  switch (todoFilter) {
+    case 'ALL':
+      return (v) => v
+    case 'ACTIVE':
+      return (v) => !v.completed
+    case 'COMPLETED':
+      return (v) => v.completed
+    default:
+      throw new Error('Unknown todoFilter' + todoFilter)
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    todos: getVisibleTodos(state.todos, state.todoFilter)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+const TodoList = connect(mapStateToProps, mapDispatchToProps)(TodoListPresentation)
 
 export default TodoList
