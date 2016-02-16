@@ -1,9 +1,23 @@
 import React, { PropTypes } from 'react'
+import {connect} from 'react-redux'
 
+import {selectTodoFilter} from 'actions/actions'
 import RadioSelection from 'components/RadioSelection/RadioSelection'
 import RadioSelectionOption from 'components/RadioSelectionOption/RadioSelectionOption'
 
-const TodoFilter = ({selected, onChange}) => (
+const mapStateToProps = (state) => {
+  return {
+    selected: state.todoFilter
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChange: todoFilter => dispatch(selectTodoFilter(todoFilter))
+  }
+}
+
+const TodoFilterPresentation = ({selected, onChange}) => (
   <div className='todo-filter'>
     <label className='control-label input-group'>Filter</label>
     <RadioSelection>
@@ -14,9 +28,11 @@ const TodoFilter = ({selected, onChange}) => (
   </div>
 )
 
-TodoFilter.propTypes = {
+TodoFilterPresentation.propTypes = {
   selected: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired
 }
+
+const TodoFilter = connect(mapStateToProps, mapDispatchToProps)(TodoFilterPresentation)
 
 export default TodoFilter
