@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import {connect} from 'react-redux'
 
-import {selectTodoFilter} from 'actions/actions'
+import {selectTodoFilter} from 'actions/actionCreators'
 import RadioSelection from 'components/RadioSelection/RadioSelection'
 import RadioSelectionOption from 'components/RadioSelectionOption/RadioSelectionOption'
 

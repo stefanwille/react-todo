@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-import {updateTodo, deleteTodo, showDeleteButtonOnTodo} from 'actions/actions'
+import {updateTodo, deleteTodo, showDeleteButtonOnTodo} from 'actions/actionCreators'
 import Container from 'containers/Container'
 import TodoPresentation from 'components/TodoPresentation/TodoPresentation'
 
