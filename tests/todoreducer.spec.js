@@ -17,7 +17,7 @@ describe('todos reducer', () => {
 
   describe('initial state', () => {
     it('is an empty array of todos', () => {
-      assert.deepEqual(INITIAL_STATE, store.getState())
+      assert.deepEqual([], store.getState().todos)
     })
   })
 

@@ -1,16 +1,11 @@
 import 'babel-polyfill'
+import {combineReducers} from 'redux'
 
-export const INITIAL_STATE = {
-  todos: [],
-  todoFilter: 'ALL',
-  deleteButtonOnTodo: -1
-}
-
-export const todoReducer = (state = INITIAL_STATE, action) => {
-  console.log('todoReducer: state', state, 'action', action)
+const todosReducer = (state = [], action) => {
+  console.log('todos: state', state, 'action', action)
   switch (action.type) {
     case 'RESET':
-      return INITIAL_STATE
+      return []
 
     case 'ADD_TODO':
       const newTodo = {
@@ -18,24 +13,49 @@ export const todoReducer = (state = INITIAL_STATE, action) => {
         text: action.text,
         completed: false
       }
-      const extendedTodos = [...state.todos, newTodo]
-      return { ...state, todos: extendedTodos }
+      return [...state, newTodo]
 
     case 'UPDATE_TODO':
-      const updatedTodos = state.todos.map(todo => (todo.id === action.id) ? { ...todo, ...action.updates } : todo)
-      return { ...state, todos: updatedTodos }
+      return state.map(todo => (todo.id === action.id) ? { ...todo, ...action.updates } : todo)
 
     case 'DELETE_TODO':
-      const remainingTodos = state.todos.filter(todo => todo.id !== action.id)
-      return { ...state, todos: remainingTodos, deleteButtonOnTodo: -1 }
-
-    case 'SELECT_TODO_FILTER':
-      return { ...state, todoFilter: action.todoFilter }
-
-    case 'SHOW_DELETE_BUTTON_ON_TODO':
-      return { ...state, deleteButtonOnTodo: action.todo }
+      return state.filter(todo => todo.id !== action.id)
 
     default:
       return state
   }
 }
+
+const todoFilterReducer = (state = 'ALL', action) => {
+  console.log('todoFilter: state', state, 'action', action)
+  switch (action.type) {
+    case 'RESET':
+      return 'ALL'
+
+    case 'SELECT_TODO_FILTER':
+      return action.todoFilter
+
+    default:
+      return state
+  }
+}
+
+const deleteButtonOnTodoReducer = (state = -1, action) => {
+  console.log('deleteButtonOnTodo: state', state, 'action', action)
+  switch (action.type) {
+    case 'RESET':
+      return -1
+
+    case 'SHOW_DELETE_BUTTON_ON_TODO':
+      return action.todo
+
+    default:
+      return state
+  }
+}
+
+export const todoReducer = combineReducers({
+  todos: todosReducer,
+  todoFilter: todoFilterReducer,
+  deleteButtonOnTodo: deleteButtonOnTodoReducer
+})
