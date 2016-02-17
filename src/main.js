@@ -1,13 +1,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
 import { todoReducer } from 'redux/modules/todoreducer'
 
 import Root from 'containers/Root'
 
-const store = createStore(todoReducer)
+function loggerMiddleware (store) {
+  return (next) => (action) => {
+    // console.log('before dispatch: state', store.getState(), 'action:', action)
+
+    // Call the next dispatch method in the middleware chain.
+    let returnValue = next(action)
+
+    console.log('after dispatch: state', store.getState())
+
+    // This will likely be the action itself, unless
+    // a middleware further in chain changed it.    return returnValue
+    return returnValue
+  }
+}
+
+const store = createStore(todoReducer, undefined, applyMiddleware(loggerMiddleware))
 
 // Render the React application to the DOM
 function render () {
@@ -19,10 +34,5 @@ function render () {
     document.getElementById('root')
   )
 }
-
-const logState = () => {
-  console.log('State after action:', store.getState())
-}
-store.subscribe(logState)
 
 render()

@@ -7,7 +7,7 @@ export const INITIAL_STATE = {
 }
 
 export const todoReducer = (state = INITIAL_STATE, action) => {
-  console.log('reducer: state', state, 'action', action)
+  console.log('todoReducer: state', state, 'action', action)
   switch (action.type) {
     case 'RESET':
       return INITIAL_STATE
