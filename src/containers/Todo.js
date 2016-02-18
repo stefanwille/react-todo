@@ -12,19 +12,19 @@ const mapStateToProps = (state, {todo}) => {
 
 const mapDispatchToProps = (dispatch, {todo}) => {
   return {
-    onCompleted: () => {
+    onCompleted () {
       dispatch(updateTodo(todo, {completed: !todo.completed}))
     },
 
-    onDelete: () => {
+    onDelete () {
       dispatch(deleteTodo(todo))
     },
 
-    onDeleteButtonShown: () => {
+    onDeleteButtonShown () {
       dispatch(showDeleteButtonOnTodo(todo.id))
     },
 
-    onDeleteButtonHidden: () => {
+    onDeleteButtonHidden () {
       dispatch(showDeleteButtonOnTodo(null))
     }
   }
