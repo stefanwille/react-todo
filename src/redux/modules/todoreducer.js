@@ -40,7 +40,7 @@ const todoFilterReducer = (state = 'ALL', action) => {
   }
 }
 
-const deleteButtonOnTodoReducer = (state = -1, action) => {
+const deleteButtonOnTodoReducer = (state = null, action) => {
   console.log('deleteButtonOnTodo: state', state, 'action', action)
   switch (action.type) {
     case 'RESET':

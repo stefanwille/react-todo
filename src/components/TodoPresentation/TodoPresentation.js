@@ -7,7 +7,6 @@ const TodoPresentation = ({
     onDelete,
     onDeleteButtonVisibilityChanged
   }) => {
-  console.log('render Todo', todo.text)
   const textStyle = todo.completed ? {'textDecoration': 'line-through'} : {}
   let deleteButtonClassName = 'delete-button close'
   if (!deleteButtonVisible) {
@@ -16,7 +15,7 @@ const TodoPresentation = ({
   return (
     <tr className='todo'
           onMouseOver={() => onDeleteButtonVisibilityChanged(todo.id)}
-          onMouseLeave={() => onDeleteButtonVisibilityChanged(-1)}
+          onMouseLeave={() => onDeleteButtonVisibilityChanged(null)}
       >
       <td>
         <input type='checkbox' checked={todo.completed ? 'checked' : ''} onChange={() => { onCompleted(todo) } } />
