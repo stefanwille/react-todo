@@ -7,7 +7,7 @@ const todos = (state = [], action) => {
         text: action.text,
         completed: false
       }
-      return [...state, newTodo]
+      return state.concat(newTodo)
 
     case 'UPDATE_TODO':
       return state.map(todo => (todo.id === action.id) ? { ...todo, ...action.updates } : todo)
