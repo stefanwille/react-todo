@@ -1,13 +1,13 @@
 import assert from 'assert'
 import { createStore } from 'redux'
 
-import { todoReducer } from 'redux/modules/todoreducer'
+import rootReducer from 'redux/rootReducer'
 
 let store
 
 describe('todos reducer', () => {
   before(() => {
-    store = createStore(todoReducer)
+    store = createStore(rootReducer)
   })
 
   describe('initial state', () => {

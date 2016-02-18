@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 
-import { todoReducer } from 'redux/modules/todoreducer'
+import rootReducer from 'redux/rootReducer'
 
 import Root from 'containers/Root'
 
@@ -22,7 +22,7 @@ function loggerMiddleware (store) {
   }
 }
 
-const store = createStore(todoReducer, undefined, applyMiddleware(loggerMiddleware))
+const store = createStore(rootReducer, undefined, applyMiddleware(loggerMiddleware))
 
 // Render the React application to the DOM
 function render () {

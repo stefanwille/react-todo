@@ -1,6 +1,14 @@
-import { combineReducers } from 'redux'
-import { routeReducer as router } from 'react-router-redux'
+import 'babel-polyfill'
+import {combineReducers} from 'redux'
 
-export default combineReducers({
-  router
+import todos from 'redux/modules/todos'
+import todoFilter from 'redux/modules/todoFilter'
+import deleteButtonOnTodo from 'redux/modules/deleteButtonOnTodo'
+
+const rootReducer = combineReducers({
+  todos: todos,
+  todoFilter: todoFilter,
+  deleteButtonOnTodo: deleteButtonOnTodo
 })
+
+export default rootReducer
