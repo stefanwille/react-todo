@@ -8,8 +8,6 @@ const TodoPresentation = ({
     onDeleteButtonShown,
     onDeleteButtonHidden
   }) => {
-  console.log('render todo', todo.text)
-
   const textStyle = todo.completed ? {'textDecoration': 'line-through'} : {}
   let deleteButtonClassName = 'delete-button close'
   if (!deleteButtonVisible) {
