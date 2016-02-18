@@ -19,7 +19,7 @@ const TodoPresentation = ({
           onMouseLeave={() => onDeleteButtonHidden()}
       >
       <td>
-        <input type='checkbox' checked={todo.completed ? 'checked' : ''} onChange={() => { onCompleted() } } />
+        <input type='checkbox' checked={todo.completed} onChange={event => onCompleted(event.target.checked) } />
       </td>
       <td>
         <span style={textStyle}>
@@ -27,7 +27,7 @@ const TodoPresentation = ({
         </span>
       </td>
       <td>
-        <button type='button' className={deleteButtonClassName} onClick={() => onDelete()}>
+        <button type='button' className={deleteButtonClassName} onClick={() => onDelete() }>
           <span aria-hidden='true'>&times;</span>
         </button>
       </td>

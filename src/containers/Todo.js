@@ -1,4 +1,4 @@
-import { PropTypes } from 'react'
+import {PropTypes} from 'react'
 import {connect} from 'react-redux'
 
 import {updateTodo, deleteTodo, showDeleteButtonOnTodo} from 'actions/actionCreators'
@@ -12,8 +12,8 @@ const mapStateToProps = (state, {todo}) => {
 
 const mapDispatchToProps = (dispatch, {todo}) => {
   return {
-    onCompleted () {
-      dispatch(updateTodo(todo, {completed: !todo.completed}))
+    onCompleted (completed) {
+      dispatch(updateTodo(todo, {completed: completed}))
     },
 
     onDelete () {
