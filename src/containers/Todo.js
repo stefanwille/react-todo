@@ -1,44 +1,39 @@
-import React, { PropTypes } from 'react'
+import { PropTypes } from 'react'
+import {connect} from 'react-redux'
 
 import {updateTodo, deleteTodo, showDeleteButtonOnTodo} from 'actions/actionCreators'
-import Container from 'containers/Container'
 import TodoPresentation from 'components/TodoPresentation/TodoPresentation'
 
-class Todo extends Container {
-  static propTypes = {
-    todo: PropTypes.object.isRequired
-  };
-
-  render () {
-    return (
-      <TodoPresentation todo={this.todo}
-                      deleteButtonVisible={this.deleteButtonVisible()}
-                      onCompleted={() => this.handleCompleted()}
-                      onDelete={() => this.handleDelete()}
-                      onDeleteButtonVisibilityChanged={(id) => this.handleDeleteButtonVisibilityChanged(id)}
-      />
-    )
+const mapStateToProps = (state, {todo}) => {
+  return {
+    deleteButtonVisible: state.deleteButtonOnTodo === todo.id
   }
+}
 
-  deleteButtonVisible () {
-    return this.reduxState.deleteButtonOnTodo === this.todo.id
-  }
+const mapDispatchToProps = (dispatch, {todo}) => {
+  return {
+    onCompleted: () => {
+      dispatch(updateTodo(todo, {completed: !todo.completed}))
+    },
 
-  handleCompleted () {
-    this.store.dispatch(updateTodo(this.todo, {completed: !this.todo.completed}))
-  }
+    onDelete: () => {
+      dispatch(deleteTodo(todo))
+    },
 
-  handleDelete () {
-    this.store.dispatch(deleteTodo(this.todo))
-  }
+    onDeleteButtonShown: () => {
+      dispatch(showDeleteButtonOnTodo(todo.id))
+    },
 
-  handleDeleteButtonVisibilityChanged (id) {
-    this.store.dispatch(showDeleteButtonOnTodo(id))
+    onDeleteButtonHidden: () => {
+      dispatch(showDeleteButtonOnTodo(null))
+    }
   }
+}
 
-  get todo () {
-    return this.props.todo
-  }
+const Todo = connect(mapStateToProps, mapDispatchToProps)(TodoPresentation)
+
+Todo.propTypes = {
+  todo: PropTypes.object.isRequired
 }
 
 export default Todo
