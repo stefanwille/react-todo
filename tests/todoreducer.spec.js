@@ -5,14 +5,9 @@ import { todoReducer } from 'redux/modules/todoreducer'
 
 let store
 
-const logState = () => {
-  console.log('logState - current state after action:', store.getState())
-}
-
 describe('todos reducer', () => {
   before(() => {
     store = createStore(todoReducer)
-    store.subscribe(logState)
   })
 
   describe('initial state', () => {
