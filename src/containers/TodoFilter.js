@@ -13,7 +13,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: todoFilter => dispatch(selectTodoFilter(todoFilter))
+    onChange (todoFilter) {
+      dispatch(selectTodoFilter(todoFilter))
+    }
   }
 }
 

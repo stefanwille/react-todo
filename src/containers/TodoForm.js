@@ -5,7 +5,7 @@ import TodoFormPresentation from 'components/TodoFormPresentation/TodoFormPresen
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddTodo: (text) => {
+    onAddTodo (text) {
       if (text !== '') {
         dispatch(addTodo(text))
       }

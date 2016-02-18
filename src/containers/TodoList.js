@@ -26,11 +26,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-const TodoList = connect(mapStateToProps, mapDispatchToProps)(TodoListPresentation)
+const TodoList = connect(mapStateToProps, null)(TodoListPresentation)
 
 export default TodoList
