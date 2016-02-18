@@ -1,18 +1,18 @@
 import assert from 'assert'
 import { createStore } from 'redux'
 
-import { todoReducer, INITIAL_STATE } from 'redux/modules/todoreducer'
+import { todoReducer } from 'redux/modules/todoreducer'
 
-let store = createStore(todoReducer)
+let store
 
 const logState = () => {
   console.log('logState - current state after action:', store.getState())
 }
-store.subscribe(logState)
 
 describe('todos reducer', () => {
   before(() => {
-    store.dispatch({type: 'RESET'})
+    store = createStore(todoReducer)
+    store.subscribe(logState)
   })
 
   describe('initial state', () => {
