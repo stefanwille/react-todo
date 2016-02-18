@@ -13,6 +13,6 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const TodoForm = connect(undefined, mapDispatchToProps)(TodoFormPresentation)
+const TodoForm = connect(null, mapDispatchToProps)(TodoFormPresentation)
 
 export default TodoForm
