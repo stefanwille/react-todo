@@ -1,31 +1,30 @@
 import React, { PropTypes } from 'react'
 
-class TodoFormPresentation extends React.Component {
-  static propTypes = {
-    onAddTodo: PropTypes.func.isRequired
-  };
+const TodoFormPresentation = ({onAddTodo}) => {
+  let input
+  return (
+    <div className='todo-form'>
+    <form className='form-inline' onSubmit={(event) => { handleSubmit(event, input, onAddTodo) }}>
+        <input type='text'
+            className='form-control text-input'
+            ref={node => { input = node }}
+            placeholder='What needs to be done?'
+          />
+      &nbsp;
+      <button className='btn btn-default'>Add</button>
+    </form>
+    </div>
+  )
+}
 
-  render () {
-    return (
-      <div className='todo-form'>
-      <form className='form-inline' onSubmit={event => this.handleSubmit(event)}>
-          <input type='text'
-              className='form-control text-input'
-              ref={node => this.input = node}
-              placeholder='What needs to be done?'
-            />
-        &nbsp;
-        <button className='btn btn-default'>Add</button>
-      </form>
-      </div>
-    )
-  }
+const handleSubmit = (event, input, onAddTodo) => {
+  event.preventDefault()
+  onAddTodo(input.value)
+  input.value = ''
+}
 
-  handleSubmit (event) {
-    event.preventDefault()
-    this.props.onAddTodo(this.input.value)
-    this.input.value = ''
-  }
+TodoFormPresentation.propTypes = {
+  onAddTodo: PropTypes.func.isRequired
 }
 
 export default TodoFormPresentation
