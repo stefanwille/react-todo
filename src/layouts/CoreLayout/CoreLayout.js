@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import '../../styles/core.scss'
 
 // Note: Stateless/function components *will not* hot reload!
 // react-transform *only* works on component classes.
